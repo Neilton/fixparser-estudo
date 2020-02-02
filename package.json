@@ -1,0 +1,90 @@
+{
+  "name": "fixparser",
+  "version": "2.9.5",
+  "description": "FIX 5.0SP2 Parser",
+  "main": "./fixparser.js",
+  "module": "src/FIXParser.ts",
+  "browser": "./browser.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/logotype/fixparser.git"
+  },
+  "scripts": {
+    "tslint": "tslint -c tslint.json '{spec,src}/**/*.ts' --fix",
+    "prettier": "node_modules/prettier/bin-prettier.js \"**/*.{js,ts}\" --write",
+    "prebuild": "babel-node --max-old-space-size=4096 prebuild/setup.js --extensions \\\".ts\\\"",
+    "build": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js -p --optimize-dedupe --optimize-minimize --color",
+    "example": "babel-node examples/run-example.js example.js",
+    "example_ctrader": "babel-node examples/run-example.js example_ctrader.js",
+    "server-socket": "babel-node examples/run-example.js example_server.js",
+    "client-socket": "babel-node examples/run-example.js example_client.js",
+    "server-websocket": "babel-node examples/run-example.js example_websocketserver.js",
+    "client-websocket": "babel-node examples/run-example.js example_websocketclient.js",
+    "perf": "node perf/Perf-FIXParser.js",
+    "test": "jest --colors --no-cache",
+    "upgrade-interactive": "npm-check --update"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
+    "@types/ws": "^7.2.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "cli-table": "^0.3.1",
+    "jest": "^25.1.0",
+    "npm-check": "^5.9.0",
+    "prettier": "^1.19.1",
+    "terser": "^4.6.3",
+    "ts-loader": "^6.2.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "yargs": "^15.1.0"
+  },
+  "resolutions": {
+    "terser": "3.14.1"
+  },
+  "keywords": [
+    "FIX Protocol",
+    "FIX Parser",
+    "FIX Client",
+    "FIX Server",
+    "FIX5.0SP2",
+    "FIX",
+    "Websocket",
+    "Financial Information eXchange"
+  ],
+  "author": "Victor Norgren",
+  "license": "MIT",
+  "jest": {
+    "globals": {
+      "__PACKAGE_VERSION__": true,
+      "__BUILD_TIME__": true
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/src/**/*.{js}",
+      "!**/dashboard/**",
+      "!**/node_modules/**",
+      "!**/spec/**"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ],
+    "roots": [
+      "<rootDir>/test"
+    ]
+  },
+  "dependencies": {
+    "ws": "^7.2.1"
+  }
+}
